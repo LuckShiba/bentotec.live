@@ -1,0 +1,49 @@
+.cards {
+    display: flex;
+}
+
+.cards--disabled {
+    display: none;
+}
+
+body.vote .cards {
+    display: none;
+}
+
+body:not(.vote) .vote-container {
+    display: none;
+}
+
+.vote-container {
+    display: flex;
+    height: 35rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Somente no Desktop */
+
+@media screen and (min-width: 50rem) {
+    .cards {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+/* Somente no Mobile */
+@media screen and (max-width: 50rem) {
+    .cards {
+        overflow-x: auto;
+        margin-top: 20%;
+    }
+}
+
+@media screen and (max-height: 660px) {
+    .cards {
+        margin-top: 0;
+    }
+
+    .vote-container {
+        height: unset;
+    }
+}

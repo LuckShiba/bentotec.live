@@ -1,0 +1,20 @@
+extends frame.pug
+
+block head
+    link(rel="stylesheet", href="/css/index.css")
+    link(rel="stylesheet", href="/css/card.css")    
+    link(rel="stylesheet", href="/css/vote.css")
+    link(rel="stylesheet", href="/css/modal.css")
+    script(src="/lib/js/vanilla-masker.min.js")
+    script(src="/lib/js/CPF.js", async)
+    script(src="/js/index.js", defer) 
+    if recaptchaEnabled
+        script(src="https://www.google.com/recaptcha/api.js", async, defer)
+
+block content   
+    .cards
+        each project in data
+            include card.pug
+    .vote-container
+        include vote.pug
+    include modal.pug
