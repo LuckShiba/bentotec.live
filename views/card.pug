@@ -1,22 +1,8 @@
 .card
     .card__image
-        img.card__image(src="/images/" + project.id + ".png", alt=project.name)
+        img.card__image(src="/images/" + project.id + ".jpg", alt=project.name)
     .card__title
         h1.card__title__text=project.name
-    .card__info
-        .card__info__item
-            span.card__info__name Número do projeto: 
-            | #{project.id}
-
-        .card__info__item
-            span.card__info__name Categoria: 
-            | #{project.category}
-
-        .card__info__item
-            span.card__info__name Participantes: 
-            ul.card__info__people
-                each name in project.people
-                    li.card__info__person=name
     .card__buttons 
         a.button.button--outline(href=project.video, target="_blank", rel="noopener noreferrer")
             | Ver vídeo

@@ -2,10 +2,10 @@ import express from 'express'
 import dotenv from 'dotenv'
 import sqlite3 from 'sqlite3'
 import CPF from 'gerador-validador-cpf'
+import fetch from 'node-fetch'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { readFileSync } from 'fs'
-
 const { Database,  OPEN_READWRITE, OPEN_CREATE } = sqlite3
 
 dotenv.config()
@@ -67,12 +67,18 @@ app.get('/votar/:id', (req, res) => {
     })
 })
 
-app.post('/votar', (req, res) => {
+app.post('/votar', async (req, res) => {
     let cpf = req.body.cpf;
 
     if (typeof cpf !== 'string') {
         return res.status(400).send({
             error: 'CPF não presente.'
+        })
+    }
+
+    if (recaptchaEnabled && !req.body.token) {
+        return res.status(400).send({
+            error: 'Erro de validação no captcha.'
         })
     }
 
@@ -86,11 +92,31 @@ app.post('/votar', (req, res) => {
     const id = req.body.id;
     const project = data.find(x => x.id == id)
 
+    if (recaptchaEnabled) {        
+        const params = new URLSearchParams({
+            secret: process.env.RECAPTCHA_SECRET,
+            response: req.body.token
+        })
+
+        const response = await fetch(`https://www.google.com/recaptcha/api/siteverify?${params}`, {
+            method: 'POST'
+        })
+
+        const { success } = await response.json()
+
+        if (!success) {
+            return res.status(400).json({
+                error: 'Erro de validação do captcha.'
+            })
+        }
+    }
+
     if (!project) {
         return res.status(404).send({
             error: 'Esse projeto não existe.'
         })
     }
+
 
     db.get('SELECT cpf FROM votos WHERE cpf = ?', [cpf], (err, row) => {
         if (err) {

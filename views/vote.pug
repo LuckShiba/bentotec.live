@@ -5,10 +5,10 @@
     .cpf
         label.cpf__label(for="cpf") Digite seu CPF:
         input#cpf.cpf__input(type="text", inputmode="numeric", placeholder="___.___.___-__", maxlength="14", autocomplete="off")
-        span#invalid.cpf__invalid CPF inválido.
+        span#invalid.cpf__invalid
     .card__buttons
         button.button.button--outline#submit(onclick="toggleVote()") Cancelar
         if recaptchaEnabled
-            button.button.g-recaptcha#vote-button(data-sitekey=recaptchaSitekey, data-id=project.id, data-callback="onSubmit", disabled) Votar
+            button.button.g-recaptcha#vote-button(data-sitekey=recaptchaSitekey, data-callback="vote", data-size="invisible", onclick="captchaVote()" disabled) Votar
         else
             button.button#vote-button(disabled, onclick="vote()") Votar

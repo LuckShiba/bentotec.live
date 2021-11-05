@@ -3,6 +3,8 @@ const voteButton = document.getElementById('vote-button')
 const invalid = document.getElementById('invalid')
 const voteName = document.getElementById('vote-name')
 const modal = document.getElementById('modal')
+const modalError = document.getElementById('modal-error')
+const modalMessage = document.getElementById('modal-message')
 
 VMasker(cpf).maskPattern('999.999.999-99')
 
@@ -10,18 +12,21 @@ let error = false
 
 function updateCpf() {
     voteButton.disabled = true
+    console.log('updated', cpf.value)
 
     if (error) {
         error = false
-        invalid.classList.remove('cpf__invalid--active')
+        invalid.innerText = ''
     }
     
-    if (cpf.value.length === 14) {
-        if (CPF.validate(cpf.value)) {
+    const cpfVal = cpf.value.replace(/\D/g, '')
+
+    if (cpfVal.length >= 11) {
+        if (CPF.validate(cpfVal)) {
             voteButton.disabled = false
         } else {
             error = true
-            invalid.classList.add('cpf__invalid--active')
+            invalid.innerText = 'CPF inválido.'
         }
     }
 }
@@ -51,7 +56,16 @@ function closeModal() {
     modal.classList.add('transition')
 }
 
-function vote() {
+function captchaVote() {
+    console.log('ward')
+    if (window.grecaptcha) {
+        grecaptcha.execute()
+    } else {
+        invalid.innerText = 'Captcha indisponível no momento.'
+    }
+}
+
+function vote(token) {
     fetch('/votar', {
         method: 'POST',
         headers: {
@@ -59,11 +73,31 @@ function vote() {
         },
         body: new URLSearchParams({
             cpf: cpf.value,
-            id: projectId
+            id: projectId,
+            token: 'batatinha frita'
         }).toString()
     }).then(res => {
+        if (res.status === 201) {
+            modalError.innerText = 'SUCESSO'
+            modalMessage.innerText = 'Você votou com sucesso.'
+        } else {
+            modalError.innerText = 'ERRO'
+            res
+                .json()
+                .then(({error}) => {
+                    modalMessage.innerText = error || 'Erro desconhecido.'
+                })
+                .catch(() => {
+                    modalMessage.innerText = 'Erro desconhecido.'
+                })
+        }
         openModal()
+        
+
         cpf.value = ''
         updateCpf()
+    }).catch(() => {
+        modalError.innerText = 'ERRO'
+        modalMessage.innerText = 'Erro desconhecido.'
     })
 }

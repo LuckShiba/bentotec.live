@@ -39,12 +39,8 @@
 
 .cpf__invalid {
     color: red;
-    visibility: hidden;
     margin: 0.1rem;
-}
-
-.cpf__invalid--active {
-    visibility: visible;
+    height: 1rem;
 }
 
 .cpf__input:focus-visible {
