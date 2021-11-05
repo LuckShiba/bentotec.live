@@ -74,7 +74,7 @@ function vote(token) {
         body: new URLSearchParams({
             cpf: cpf.value,
             id: projectId,
-            token: 'batatinha frita'
+            token
         }).toString()
     }).then(res => {
         if (res.status === 201) {
