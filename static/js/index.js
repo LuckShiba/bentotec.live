@@ -57,7 +57,6 @@ function closeModal() {
 }
 
 function captchaVote() {
-    console.log('ward')
     if (window.grecaptcha) {
         grecaptcha.execute()
     } else {
