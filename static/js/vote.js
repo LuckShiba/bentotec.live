@@ -36,6 +36,7 @@ export class Vote {
         if (cpfVal.length >= 11) {
             if (CPF.validate(cpfVal)) {
                 voteButton.disabled = false
+                invalid.innerText = ''
             } else {
                 invalid.innerText = 'CPF inválido'
             }
