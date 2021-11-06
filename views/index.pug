@@ -7,9 +7,9 @@ block head
     link(rel="stylesheet", href="/css/modal.css")
     script(src="/lib/js/vanilla-masker.min.js")
     script(src="/lib/js/CPF.js", async)
-    script(src="/js/index.js", defer) 
+    script(src="/js/index.js", defer, type="module") 
     if recaptchaEnabled
-        script(src="https://www.google.com/recaptcha/api.js", async, defer)
+        script(src="https://www.google.com/recaptcha/api.js?onload=captchaLoad", async, defer)
 
 block content   
     .cards

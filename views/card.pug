@@ -6,5 +6,5 @@
     .card__buttons 
         a.button.button--outline(href=project.video, target="_blank", rel="noopener noreferrer")
             | Ver vídeo
-        button.button(onclick=`voteCard(${project.id}, '${project.name}')`)
+        button.vote-button.button( data-id=project.id, data-name=project.name)
             | Votar
