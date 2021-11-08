@@ -36,6 +36,10 @@ body:not(.vote) .vote-container {
         overflow-x: auto;
         margin-top: 20%;
     }
+
+    .card {
+        margin: 1.2rem 2vw!important;
+    }
 }
 
 @media screen and (max-height: 660px) {

@@ -18,6 +18,7 @@
 
 .card__title {
     height: 3rem;
+    line-height: 1.6rem;
     display: flex;
     justify-content: center;
     align-items: center;
