@@ -51,24 +51,6 @@ app.get('/', (req, res) => {
     })
 })
 
-app.get('/votar/:id', (req, res) => {
-    const project = data.find(x => x.id == req.params.id)
-
-    if (!project) {
-        return res.status(404).render('message', {
-            error: true,
-            message: 'Esse projeto não existe.'
-        })
-    }
-
-    res.render('vote', {
-        id: req.params.id,
-        project,
-        recaptchaEnabled,
-        recaptchaSitekey: process.env.RECAPTCHA_SITEKEY
-    })
-})
-
 app.post('/votar', async (req, res) => {
     let cpf = req.body.cpf;
 
