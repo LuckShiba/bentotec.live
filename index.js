@@ -27,7 +27,9 @@ db.serialize(() => {
     db.run(`
         CREATE TABLE IF NOT EXISTS votos (
             cpf CHARACTER(11) PRIMARY KEY,
-            project_id UNSIGNED INTEGER
+            project_id UNSIGNED INTEGER,
+            ip VARCHAR(46),
+            ray VARCHAR(40)
         );
     `)
 })
@@ -132,7 +134,10 @@ app.post('/votar', async (req, res) => {
             })
         }
 
-        db.run('INSERT INTO votos (cpf, project_id) VALUES (?, ?)', [cpf, id], (_, err) => {
+        const ip = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'] || req.ip
+        const ray = req.headers['cf-ray']
+
+        db.run('INSERT INTO votos (cpf, project_id, ip, ray) VALUES (?, ?, ?, ?)', [cpf, id, ip, ray], (_, err) => {
             if (err) {
                 console.error(`[${cpf}] Erro votando para ${id}: ${err}`)
                 return res.status(500).send({
