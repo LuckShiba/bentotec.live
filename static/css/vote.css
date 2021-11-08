@@ -52,3 +52,7 @@
     transform: none!important;
     filter: grayscale(1);
 }
+
+.grecaptcha-badge {
+    z-index: 1;
+}
