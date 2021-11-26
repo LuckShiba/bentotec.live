@@ -11,7 +11,10 @@ block head
     if recaptchaEnabled
         script(src="https://www.google.com/recaptcha/api.js?onload=captchaLoad", async, defer)
 
-block content   
+block content
+    .advice 
+        h6.advice__title AVISO
+        p.advice__text A votação encerrará dia 26 de novembro de 2021 às 12h00.
     .cards
         each project in data
             include card.pug

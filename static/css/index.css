@@ -1,3 +1,29 @@
+.advice {
+  background: white;
+  border: 2px solid #f9b94d;
+  border-radius: 12px;
+  width: 22.6rem;
+  max-width: 80vw;
+  height: 8rem;
+  padding: 1rem;
+  text-align: center;
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.advice__title {
+  color: #f9b94d;
+  font-size: 20pt;
+  font-weight: 600;
+}
+
+.advice__text {
+  font-size: 16pt;
+  font-weight: 400;
+}
+
 .cards {
   display: flex;
 }
@@ -34,7 +60,6 @@ body:not(.vote) .vote-container {
 @media screen and (max-width: 50rem) {
   .cards {
     overflow-x: auto;
-    margin-top: 20%;
   }
 
   .card {
