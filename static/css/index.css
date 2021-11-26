@@ -1,53 +1,53 @@
 .cards {
-    display: flex;
+  display: flex;
 }
 
 .cards--disabled {
-    display: none;
+  display: none;
 }
 
 body.vote .cards {
-    display: none;
+  display: none;
 }
 
 body:not(.vote) .vote-container {
-    display: none;
+  display: none;
 }
 
 .vote-container {
-    display: flex;
-    height: 35rem;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  height: 35rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Somente no Desktop */
 
 @media screen and (min-width: 50rem) {
-    .cards {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
+  .cards {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
 
 /* Somente no Mobile */
 @media screen and (max-width: 50rem) {
-    .cards {
-        overflow-x: auto;
-        margin-top: 20%;
-    }
+  .cards {
+    overflow-x: auto;
+    margin-top: 20%;
+  }
 
-    .card {
-        margin: 1.2rem 2vw!important;
-    }
+  .card {
+    margin: 1.2rem 2vw !important;
+  }
 }
 
 @media screen and (max-height: 660px) {
-    .cards {
-        margin-top: 0;
-    }
+  .cards {
+    margin-top: 0;
+  }
 
-    .vote-container {
-        height: unset;
-    }
+  .vote-container {
+    height: unset;
+  }
 }

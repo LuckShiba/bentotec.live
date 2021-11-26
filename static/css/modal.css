@@ -1,52 +1,52 @@
 .scroll-disabled {
-    overflow: none;
+  overflow: none;
 }
 
 .modal {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: none;
 }
 
 .modal.active {
-    display: flex;
-    background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal:not(.active) .modal__box {
-    transform: translateY(-150%);
+  transform: translateY(-150%);
 }
 
 .modal__box {
-    border-radius: 18px;
-    background-color: white;
-    width: 20rem;
-    height: 14rem;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    transition: transform 0.7s;
+  border-radius: 18px;
+  background-color: white;
+  width: 20rem;
+  height: 14rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.7s;
 }
 
 .modal__title {
-    font-size: 22pt;
-    font-weight: 800;
-    width: 18rem;
-    text-align: center;
+  font-size: 22pt;
+  font-weight: 800;
+  width: 18rem;
+  text-align: center;
 }
 
 .modal__message {
-    font-size: 18pt;
-    margin: 1rem auto;
-    text-align: center;
-    width: 18rem;
+  font-size: 18pt;
+  margin: 1rem auto;
+  text-align: center;
+  width: 18rem;
 }

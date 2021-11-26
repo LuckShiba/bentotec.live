@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ."
   },
-  "author": "Lucas Martins",
+  "author": "LuckShiba",
   "license": "Unlicensed",
   "private": true,
   "dependencies": {
