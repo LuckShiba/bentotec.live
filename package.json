@@ -15,7 +15,7 @@
     "gerador-validador-cpf": "^5.0.2",
     "node-fetch": "^3.0.0",
     "pug": "^3.0.2",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.3"
   },
   "type": "module"
 }
